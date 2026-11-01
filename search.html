@@ -53,10 +53,10 @@ if (savedTheme === 'dark') {
 <div class="muted" id="scopeLabel">검색 결과</div>
 <form class="searchbox" id="searchForm">
 <select id="scope" aria-label="검색 대상">
-<option value="all">통합검색</option>
-<option value="blog">블로그</option>
-<option value="sns">커뮤니티</option>
-<option value="wikis">위키</option>
+<option value="all">Extedic 전체</option>
+<option value="blog">Extedic 블로그</option>
+<option value="sns">Extedic SNS</option>
+<option value="wikis">위키스</option>
 </select>
 <input id="query" type="search" placeholder="검색어를 입력하세요" autocomplete="off" required>
 <button type="submit">검색</button>
@@ -64,30 +64,6 @@ if (savedTheme === 'dark') {
 </section>
 <section class="panel">
 <h2 id="resultHeading">검색 결과</h2>
-  <!-- 모아 인물 정보 패널 -->
-<section id="moa-info" class="moa-info" hidden>
-  <div class="moa-info-header">
-    <div class="moa-info-heading">
-      <span class="moa-info-label">MOA PEOPLE</span>
-      <div class="moa-info-title-line">
-        <h2 id="moa-info-title"></h2>
-        <span id="moa-info-subtitle"></span>
-      </div>
-    </div>
-    <span class="moa-info-category">인물 정보</span>
-  </div>
-
-  <div class="moa-info-content">
-    <table class="moa-info-table">
-      <tbody id="moa-info-details"></tbody>
-    </table>
-  </div>
-
-  <div class="moa-info-footer">
-    <span>모아 자체 등록 정보</span>
-  </div>
-</section>
-
 <div class="gcse-search"></div>
 <p class="note">검색 결과는 구글 프로그래머블 검색엔진을 통해 표시됩니다. 결과가 나오지 않으면 검색엔진 설정에서 세 도메인이 검색 대상에 포함되어 있는지 확인해 주세요.</p>
 </section>
@@ -97,10 +73,10 @@ if (savedTheme === 'dark') {
 const params=new URLSearchParams(location.search);
 const $=s=>document.querySelector(s);
 const scopes={
- all:{label:'통합검색',query:''},
- blog:{label:'블로그',query:'site:blog.extedic.com'},
- sns:{label:'커뮤니티',query:'site:sns.extedic.com'},
- wikis:{label:'위키',query:'site:wikis.krsocsci.org'}
+ all:{label:'전체',query:''},
+ blog:{label:'Extedic 블로그',query:'site:blog.extedic.com'},
+ sns:{label:'Extedic SNS',query:'site:sns.extedic.com'},
+ wikis:{label:'위키스',query:'site:wikis.krsocsci.org'}
 };
 function applySearch(){
  const q=$('#query').value.trim();
@@ -135,216 +111,6 @@ $('#themeBtn').addEventListener('click',()=>{
   const isDark = document.body.classList.toggle('dark');
   localStorage.setItem('moa-theme', isDark ? 'dark' : 'light');
 });
-  /* MOA 인물 정보 패널 */
-
-.moa-info {
-  width: 100%;
-  box-sizing: border-box;
-  margin: 20px 0;
-  padding: 22px;
-  border: 1px solid #e2e5eb;
-  border-radius: 14px;
-  background: #ffffff;
-  color: #202124;
-  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.04);
-}
-
-.moa-info[hidden] {
-  display: none !important;
-}
-
-.moa-info-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-  padding-bottom: 17px;
-  border-bottom: 1px solid #e8eaed;
-}
-
-.moa-info-label {
-  display: block;
-  margin-bottom: 9px;
-  color: #777f8d;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-}
-
-.moa-info-title-line {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 9px;
-}
-
-.moa-info-title-line h2 {
-  margin: 0;
-  font-size: 25px;
-  font-weight: 750;
-}
-
-.moa-info-title-line span {
-  color: #737b88;
-  font-size: 13px;
-}
-
-.moa-info-category {
-  padding: 6px 10px;
-  border-radius: 6px;
-  background: #f0f2f6;
-  color: #606977;
-  font-size: 12px;
-  white-space: nowrap;
-}
-
-.moa-info-content {
-  padding-top: 12px;
-}
-
-.moa-info-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.moa-info-table th,
-.moa-info-table td {
-  padding: 12px 8px;
-  border-bottom: 1px solid #f0f1f3;
-  text-align: left;
-  font-size: 14px;
-}
-
-.moa-info-table th {
-  width: 85px;
-  color: #737b88;
-  font-weight: 600;
-}
-
-.moa-info-table td {
-  color: #202124;
-  font-weight: 500;
-}
-
-.moa-info-footer {
-  padding-top: 13px;
-  color: #9299a4;
-  font-size: 11px;
-  text-align: right;
-}
-
-/* 다크 모드 */
-body.dark .moa-info {
-  background: #20232a;
-  border-color: #383d48;
-  color: #f1f3f5;
-}
-
-body.dark .moa-info-header {
-  border-color: #383d48;
-}
-
-body.dark .moa-info-category {
-  background: #343945;
-  color: #d1d5dc;
-}
-
-body.dark .moa-info-title-line span,
-body.dark .moa-info-table th,
-body.dark .moa-info-footer {
-  color: #aab1bd;
-}
-
-body.dark .moa-info-table th,
-body.dark .moa-info-table td {
-  border-color: #383d48;
-}
-
-body.dark .moa-info-table td {
-  color: #f1f3f5;
-}
-
-@media (max-width: 600px) {
-  .moa-info {
-    padding: 17px;
-  }
-
-  .moa-info-title-line h2 {
-    font-size: 22px;
-  }
-}
 </script>
-  <script>
-(() => {
-  // 직접 등록하는 인물 데이터
-  const database = {
-    "노진구": {
-      subtitle: "정치인",
-      rows: [
-        ["출생", "2009년 8월 27일"],
-        ["정당", "휘그당"],
-        ["경력", "휘그당 대표"],
-        ["경력", "전 국무총리"]
-      ]
-    }
-
-    // 새로운 인물은 이 아래에 추가
-  };
-
-  // 검색어 가져오기
-  const params = new URLSearchParams(location.search);
-
-  let query = params.get("q") || "";
-
-  // 검색 범위 지정용 명령어 제거
-  query = query
-    .replace(/site:\S+/gi, "")
-    .replace(/\bOR\b/gi, "")
-    .replace(/[()"]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-
-  // 패널 요소 가져오기
-  const panel = document.getElementById("moa-info");
-
-  if (!panel) return;
-
-  // 등록된 검색어와 정확히 일치하는지 확인
-  const data = database[query];
-
-  if (!data) {
-    panel.hidden = true;
-    return;
-  }
-
-  // 인물 기본 정보 표시
-  document.getElementById("moa-info-title").textContent = query;
-
-  document.getElementById("moa-info-subtitle").textContent =
-    data.subtitle || "";
-
-  // 상세 정보 표시
-  const tbody = document.getElementById("moa-info-details");
-
-  tbody.replaceChildren();
-
-  data.rows.forEach(([label, value]) => {
-    const tr = document.createElement("tr");
-
-    const th = document.createElement("th");
-    th.textContent = label;
-
-    const td = document.createElement("td");
-    td.textContent = value;
-
-    tr.append(th, td);
-
-    tbody.appendChild(tr);
-  });
-
-  // 패널 표시
-  panel.hidden = false;
-})();
-  </script>
 </body>
 </html>
