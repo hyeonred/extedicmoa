@@ -67,11 +67,11 @@ h1{font-size:clamp(25px,4vw,34px);letter-spacing:-1px;margin:0 0 8px}
 <script>
 const params=new URLSearchParams(location.search);
 const $=s=>document.querySelector(s);
-const scopes={
- all:{label:'Extedic 전체',query:'(site:blog.extedic.com OR site:sns.extedic.com)'},
- blog:{label:'Extedic 블로그',query:'site:blog.extedic.com'},
- sns:{label:'Extedic SNS',query:'site:sns.extedic.com'},
- wikis:{label:'위키스',query:'site:wikis.krsocsci.org'}
+const prefixes={
+  all:'',
+  blog:'site:blog.extedic.com',
+  sns:'site:sns.extedic.com',
+  wikis:'site:wikis.krsocsci.org'
 };
 function applySearch(){
  const q=$('#query').value.trim();
