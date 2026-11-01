@@ -49,7 +49,12 @@ $('#searchForm').addEventListener('submit',e=>{
  const q=$('#query').value.trim();
  if(!q){$('#query').focus();return;}
  const scope=$('#engine').value;
- const prefixes={all:'(site:blog.extedic.com OR site:sns.extedic.com)',blog:'site:blog.extedic.com',sns:'site:sns.extedic.com',wikis:'site:wikis.krsocsci.org'};
+const prefixes={
+  all:'',
+  blog:'site:blog.extedic.com',
+  sns:'site:sns.extedic.com',
+  wikis:'site:wikis.krsocsci.org'
+};
  const params=new URLSearchParams({q:(prefixes[scope]||prefixes.all)+' '+q,scope});
  window.location.href='search.html?'+params.toString();
 });
