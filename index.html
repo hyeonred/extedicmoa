@@ -13,7 +13,12 @@ a{color:inherit;text-decoration:none}.wrap{max-width:1120px;margin:auto;padding:
 <body><div class="wrap">
 <header class="top"><a class="logo" href="#">모아<span style="color:var(--text)">.</span></a><div class="top-right"><span id="today"></span><button class="iconbtn" id="themeBtn" aria-label="화면 테마 변경">☾</button></div></header>
 <main><section class="hero"><h1>필요한 정보를 한곳에</h1><p>Extedic과 위키스의 정보를 한곳에서 검색하세요.</p>
-<form class="searchbox" id="searchForm"><select id="engine" aria-label="검색 대상"><option value="all">Extedic 전체</option><option value="blog">Extedic 블로그</option><option value="sns">Extedic SNS</option><option value="wikis">위키스</option></select><input id="query" placeholder="검색어를 입력하세요" autocomplete="off" required><button type="submit">검색</button></form>
+<form class="searchbox" id="searchForm"><select id="engine" aria-label="검색 대상"><option value="all">Extedic 전체</option><option value="blog">Extedic 블로그</option><option value="sns">Extedic SNS</option><option value="wikis">위키스</option></select><input
+  id="query"
+  type="search"
+  placeholder="오늘은 무엇을 검색해볼까요?"
+  autocomplete="off"
+><button type="submit">검색</button></form>
 <div class="shortcuts"><a class="shortcut" href="https://www.naver.com" target="_blank" rel="noopener">네이버 ↗</a><a class="shortcut" href="https://www.google.com" target="_blank" rel="noopener">구글 ↗</a><a class="shortcut" href="https://www.youtube.com" target="_blank" rel="noopener">유튜브 ↗</a><a class="shortcut" href="https://map.kakao.com" target="_blank" rel="noopener">지도 ↗</a></div>
 </section>
 <div class="grid"><section class="panel"><h2>바로가기</h2><div class="tiles">
@@ -52,4 +57,30 @@ $('#themeBtn').addEventListener('click',()=>{document.body.classList.toggle('dar
 const memoKey='moaMemo';
 function saveMemo(){try{localStorage.setItem(memoKey,$('#memo').value);$('#memoStatus').textContent='저장되었습니다. 이 브라우저에서 다시 열어도 메모가 유지됩니다.';}catch(err){$('#memoStatus').textContent='저장하지 못했습니다. 브라우저의 사이트 데이터 저장을 허용해 주세요.';}}
 try{const saved=localStorage.getItem(memoKey);if(saved!==null)$('#memo').value=saved;$('#memoStatus').textContent=saved!==null?'저장된 메모를 불러왔습니다.':'메모를 입력한 뒤 저장 버튼을 누르세요.';$('#memo').addEventListener('input',()=>{$('#memoStatus').textContent='저장되지 않은 변경 사항이 있습니다.';});$('#saveMemo').addEventListener('click',saveMemo);$('#clearMemo').addEventListener('click',()=>{if(!$('#memo').value)return;$('#memo').value='';saveMemo();$('#memoStatus').textContent='메모를 지웠습니다.';});}catch(err){$('#memoStatus').textContent='이 브라우저에서는 메모 저장 기능을 사용할 수 없습니다.';$('#saveMemo').disabled=true;}
+const suggestions = [
+  "익스테딕을 검색해보세요",
+  "평천특별시를 검색해보세요",
+  "텐을 검색해보세요",
+  "대통령 선거를 검색해보세요",
+  "노진구를 검색해보세요",
+  "곡례광역시를 검색해보세요"
+];
+
+const searchInput = document.querySelector("#query");
+
+function changePlaceholder() {
+  if (
+    document.activeElement === searchInput ||
+    searchInput.value.trim() !== ""
+  ) return;
+
+  const random = Math.floor(
+    Math.random() * suggestions.length
+  );
+
+  searchInput.placeholder = suggestions[random];
+}
+
+changePlaceholder();
+setInterval(changePlaceholder, 3500);
 </script></body></html>
