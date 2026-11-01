@@ -65,14 +65,11 @@ h1{font-size:clamp(25px,4vw,34px);letter-spacing:-1px;margin:0 0 8px}
 </main>
 </div>
 <script>
-const params=new URLSearchParams(location.search);
-const $=s=>document.querySelector(s);
-const prefixes={
-  all:'',
-  blog:'site:blog.extedic.com',
-  sns:'site:sns.extedic.com',
-  wikis:'site:wikis.krsocsci.org'
-};
+const params = new URLSearchParams({
+  q: ((prefixes[scope] || '') + ' ' + q).trim(),
+  scope
+});
+window.location.href = 'search.html?' + params.toString();
 function applySearch(){
  const q=$('#query').value.trim();
  const key=$('#scope').value;
