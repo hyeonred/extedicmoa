@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>모아 - 통합 검색 포털</title>
+<script async src="https://cse.google.com/cse.js?cx=535bc4f986ce24247"></script>
+<style>
+:root{--bg:#f5f7fb;--panel:#fff;--text:#172033;--muted:#697386;--line:#e6eaf1;--accent:#4568f5;--soft:#eef2ff;--shadow:0 10px 30px #23345b0c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,'Noto Sans KR',sans-serif;transition:.2s}body.dark{--bg:#111827;--panel:#1c2638;--text:#edf2ff;--muted:#a6b0c3;--line:#344158;--accent:#91a6ff;--soft:#293653;--shadow:0 10px 30px #0003}
+a{color:inherit;text-decoration:none}.wrap{max-width:1120px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;align-items:center;margin:8px 0 44px}.logo{font-size:27px;font-weight:850;letter-spacing:-1.5px;color:var(--accent)}.top-right{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:14px}.iconbtn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;padding:9px 12px;cursor:pointer}.hero{text-align:center;margin:0 auto 38px}.hero h1{font-size:clamp(30px,5vw,48px);letter-spacing:-2px;margin:0 0 12px}.hero p{color:var(--muted);margin:0 0 25px}.searchbox{max-width:720px;margin:auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:8px;display:flex;box-shadow:var(--shadow)}.searchbox select{border:0;background:transparent;color:var(--muted);padding:0 10px;outline:none}.searchbox input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font-size:16px;padding:12px}.searchbox button{border:0;border-radius:13px;background:var(--accent);color:white;font-weight:700;padding:0 23px;cursor:pointer}.results-panel{margin:24px auto 0;max-width:900px;display:none}.results-panel.show{display:block}.results-panel h2{font-size:18px;margin:0 0 14px}.search-hint{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}.gcse-search{min-height:80px}.gsc-control-cse{background:transparent!important;border:0!important;padding:0!important}.gsc-webResult.gsc-result,.gsc-results .gsc-imageResult{background:var(--panel)!important;border-color:var(--line)!important}.gsc-control-cse,.gsc-table-result,.gsc-thumbnail-inside,.gsc-url-top{color:var(--text)!important}.gsc-result .gs-title,.gsc-result .gs-title *{color:var(--accent)!important}.gsc-result .gs-snippet{color:var(--text)!important}.gsc-results .gsc-cursor-box{border-color:var(--line)!important}.shortcuts{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:20px}.shortcut{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 17px;color:var(--muted);font-size:14px}.shortcut:hover,.tile:hover{border-color:var(--accent);transform:translateY(-2px)}.grid{display:grid;grid-template-columns:1.35fr 1fr;gap:18px;margin-top:34px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}.panel h2{font-size:18px;margin:0 0 17px;letter-spacing:-.5px}.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.tile{border:1px solid var(--line);border-radius:14px;padding:15px 12px;transition:.18s;min-height:82px}.tile b{display:block;font-size:15px;margin-bottom:6px}.tile span{font-size:12px;color:var(--muted)}.links{display:grid;grid-template-columns:1fr 1fr;gap:12px}.linkitem{padding:12px 0;border-bottom:1px solid var(--line)}.linkitem:last-child,.linkitem:nth-last-child(2){border-bottom:0}.linkitem b{font-size:14px}.linkitem small{display:block;color:var(--muted);margin-top:5px}.clock{font-size:30px;font-weight:750;letter-spacing:-1px}.date{color:var(--muted);font-size:13px;margin-top:4px}.memo{width:100%;min-height:105px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg);color:var(--text);font:inherit;outline-color:var(--accent)}.memo-note{font-size:12px;color:var(--muted);margin-top:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}.memo-actions{display:flex;gap:8px;margin-top:10px}.memo-actions button{border:0;border-radius:10px;padding:9px 14px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer}.memo-actions button.secondary{background:var(--soft);color:var(--text)}.footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0 12px}
+@media(max-width:760px){.wrap{padding:17px}.top{margin-bottom:34px}.grid{grid-template-columns:1fr}.tiles{grid-template-columns:repeat(2,1fr)}.searchbox select{max-width:90px}.searchbox button{padding:0 15px}.hero h1{letter-spacing:-1.5px}}
+</style></head>
+<body><div class="wrap">
+<header class="top"><a class="logo" href="#">모아<span style="color:var(--text)">.</span></a><div class="top-right"><span id="today"></span><button class="iconbtn" id="themeBtn" aria-label="화면 테마 변경">☾</button></div></header>
+<main><section class="hero"><h1>필요한 정보를 한곳에</h1><p>Extedic과 위키스의 정보를 한곳에서 검색하세요.</p>
+<form class="searchbox" id="searchForm"><select id="engine" aria-label="검색 대상"><option value="all">Extedic 전체</option><option value="blog">Extedic 블로그</option><option value="sns">Extedic SNS</option><option value="wikis">위키스</option></select><input id="query" placeholder="검색어를 입력하세요" autocomplete="off" required><button type="submit">검색</button></form>
+<div class="search-hint">검색 결과는 별도의 모아 검색 페이지에서 표시됩니다.</div>
+<div class="shortcuts"><a class="shortcut" href="https://www.naver.com" target="_blank" rel="noopener">네이버 ↗</a><a class="shortcut" href="https://www.google.com" target="_blank" rel="noopener">구글 ↗</a><a class="shortcut" href="https://www.youtube.com" target="_blank" rel="noopener">유튜브 ↗</a><a class="shortcut" href="https://map.kakao.com" target="_blank" rel="noopener">지도 ↗</a></div>
+</section>
+<div class="grid"><section class="panel"><h2>바로가기</h2><div class="tiles">
+<a class="tile" href="https://www.naver.com" target="_blank" rel="noopener"><b>🌐 포털</b><span>네이버 바로가기</span></a>
+<a class="tile" href="https://news.google.com" target="_blank" rel="noopener"><b>📰 뉴스</b><span>오늘의 주요 소식</span></a>
+<a class="tile" href="https://www.youtube.com" target="_blank" rel="noopener"><b>▶ 동영상</b><span>영상 콘텐츠</span></a>
+<a class="tile" href="https://map.kakao.com" target="_blank" rel="noopener"><b>📍 지도</b><span>장소와 길 찾기</span></a>
+<a class="tile" href="https://www.weather.go.kr" target="_blank" rel="noopener"><b>☀ 날씨</b><span>기상청 날씨 정보</span></a>
+<a class="tile" href="https://www.korea.kr" target="_blank" rel="noopener"><b>🏛 정책·공공</b><span>대한민국 정책브리핑</span></a>
+</div></section>
+<section class="panel"><h2>오늘의 정보</h2><div class="clock" id="clock">--:--:--</div><div class="date" id="dateLine">날짜를 불러오는 중</div><div style="height:18px"></div><h2 style="margin-bottom:10px">관심 분야 검색</h2><div class="links">
+<a class="linkitem" href="https://www.google.com/search?q=정치+뉴스" target="_blank" rel="noopener"><b>정치</b><small>정치 뉴스 찾아보기</small></a>
+<a class="linkitem" href="https://www.google.com/search?q=경제+뉴스" target="_blank" rel="noopener"><b>경제</b><small>경제 소식 찾아보기</small></a>
+<a class="linkitem" href="https://www.google.com/search?q=과학+기술+뉴스" target="_blank" rel="noopener"><b>과학·기술</b><small>새로운 기술과 연구</small></a>
+<a class="linkitem" href="https://www.google.com/search?q=문화+엔터테인먼트+뉴스" target="_blank" rel="noopener"><b>문화</b><small>영화·음악·콘텐츠</small></a>
+</div></section>
+<section class="panel"><h2>나의 메모</h2><textarea class="memo" id="memo" placeholder="기억할 내용이나 오늘 할 일을 적어보세요."></textarea><div class="memo-actions"><button type="button" id="saveMemo">메모 저장</button><button type="button" class="secondary" id="clearMemo">메모 지우기</button></div><div class="memo-note"><span id="memoStatus" role="status" aria-live="polite">입력한 메모를 저장할 수 있습니다.</span></div></section>
+<section class="panel"><h2>유용한 서비스</h2><div class="links">
+<a class="linkitem" href="https://www.gov.kr" target="_blank" rel="noopener"><b>정부24</b><small>민원·공공서비스</small></a>
+<a class="linkitem" href="https://www.work.go.kr" target="_blank" rel="noopener"><b>고용24</b><small>고용·취업 정보</small></a>
+<a class="linkitem" href="https://www.data.go.kr" target="_blank" rel="noopener"><b>공공데이터포털</b><small>공공 데이터</small></a>
+<a class="linkitem" href="https://www.khan.co.kr" target="_blank" rel="noopener"><b>경향신문</b><small>언론사 홈페이지</small></a>
+</div></section></div></main><footer class="footer">모아 포털 · Extedic 공개 콘텐츠 통합 검색</footer></div>
+<script>
+const $=s=>document.querySelector(s);function updateTime(){const d=new Date();$('#clock').textContent=d.toLocaleTimeString('ko-KR');$('#dateLine').textContent=d.toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'long'});$('#today').textContent=d.toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'short'});}updateTime();setInterval(updateTime,1000);
+$('#searchForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const q=$('#query').value.trim();
+ if(!q){$('#query').focus();return;}
+ const scope=$('#engine').value;
+ const prefixes={all:'(site:blog.extedic.com OR site:sns.extedic.com)',blog:'site:blog.extedic.com',sns:'site:sns.extedic.com',wikis:'site:wikis.krsocsci.org'};
+ const params=new URLSearchParams({q:(prefixes[scope]||prefixes.all)+' '+q,scope});
+ window.location.href='search.html?'+params.toString();
+});
+$('#themeBtn').addEventListener('click',()=>{document.body.classList.toggle('dark');$('#themeBtn').textContent=document.body.classList.contains('dark')?'☀':'☾';});
+const memoKey='moaMemo';
+function saveMemo(){try{localStorage.setItem(memoKey,$('#memo').value);$('#memoStatus').textContent='저장되었습니다. 이 브라우저에서 다시 열어도 메모가 유지됩니다.';}catch(err){$('#memoStatus').textContent='저장하지 못했습니다. 브라우저의 사이트 데이터 저장을 허용해 주세요.';}}
+try{const saved=localStorage.getItem(memoKey);if(saved!==null)$('#memo').value=saved;$('#memoStatus').textContent=saved!==null?'저장된 메모를 불러왔습니다.':'메모를 입력한 뒤 저장 버튼을 누르세요.';$('#memo').addEventListener('input',()=>{$('#memoStatus').textContent='저장되지 않은 변경 사항이 있습니다.';});$('#saveMemo').addEventListener('click',saveMemo);$('#clearMemo').addEventListener('click',()=>{if(!$('#memo').value)return;$('#memo').value='';saveMemo();$('#memoStatus').textContent='메모를 지웠습니다.';});}catch(err){$('#memoStatus').textContent='이 브라우저에서는 메모 저장 기능을 사용할 수 없습니다.';$('#saveMemo').disabled=true;}
+</script></body></html>
