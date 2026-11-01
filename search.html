@@ -36,7 +36,12 @@ h1{font-size:clamp(25px,4vw,34px);letter-spacing:-1px;margin:0 0 8px}
 @media(max-width:650px){.wrap{padding:16px}.searchbox{flex-wrap:wrap}.searchbox select{width:100%;max-width:none;border-bottom:1px solid var(--line)}.searchbox input{width:100%;flex-basis:60%}.searchbox button{min-height:42px}}
 </style>
 </head>
-<body>
+<body><script>
+const savedTheme = localStorage.getItem('moa-theme');
+if (savedTheme === 'dark') {
+  document.body.classList.add('dark');
+}
+</script>
 <div class="wrap">
 <header class="top">
 <a class="logo" href="index.html">모아<span style="color:var(--text)">.</span></a>
@@ -102,7 +107,10 @@ $('#searchForm').addEventListener('submit',e=>{
  const p=new URLSearchParams({q:(chosen.query+' '+q).trim(),scope:key});
  location.href='search.html?'+p.toString();
 });
-$('#themeBtn').addEventListener('click',()=>document.body.classList.toggle('dark'));
+$('#themeBtn').addEventListener('click',()=>{
+  const isDark = document.body.classList.toggle('dark');
+  localStorage.setItem('moa-theme', isDark ? 'dark' : 'light');
+});
 </script>
 </body>
 </html>
