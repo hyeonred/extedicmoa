@@ -97,10 +97,10 @@ if (savedTheme === 'dark') {
 const params=new URLSearchParams(location.search);
 const $=s=>document.querySelector(s);
 const scopes={
- all:{label:'전체',query:''},
- blog:{label:'Extedic 블로그',query:'site:blog.extedic.com'},
- sns:{label:'Extedic SNS',query:'site:sns.extedic.com'},
- wikis:{label:'위키스',query:'site:wikis.krsocsci.org'}
+ all:{label:'통합검색',query:''},
+ blog:{label:'블로그',query:'site:blog.extedic.com'},
+ sns:{label:'커뮤니티',query:'site:sns.extedic.com'},
+ wikis:{label:'위키',query:'site:wikis.krsocsci.org'}
 };
 function applySearch(){
  const q=$('#query').value.trim();
