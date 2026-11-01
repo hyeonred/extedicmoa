@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>모아 검색 결과</title>
+<script async src="https://cse.google.com/cse.js?cx=535bc4f986ce24247"></script>
+<style>
+:root{--bg:#f5f7fb;--panel:#fff;--text:#172033;--muted:#697386;--line:#e6eaf1;--accent:#4568f5;--shadow:0 10px 30px #23345b0c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,'Noto Sans KR',sans-serif}
+body.dark{--bg:#111827;--panel:#1c2638;--text:#edf2ff;--muted:#a6b0c3;--line:#344158;--accent:#91a6ff;--shadow:0 10px 30px #0003}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1050px;margin:auto;padding:24px}
+.top{display:flex;justify-content:space-between;align-items:center;margin:8px 0 28px}
+.logo{font-size:27px;font-weight:850;letter-spacing:-1.5px;color:var(--accent)}
+.top-right{display:flex;gap:10px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;padding:9px 12px;cursor:pointer}
+.hero{margin-bottom:20px}
+h1{font-size:clamp(25px,4vw,34px);letter-spacing:-1px;margin:0 0 8px}
+.muted{color:var(--muted);font-size:14px}
+.searchbox{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:8px;display:flex;gap:6px;box-shadow:var(--shadow);margin:20px 0}
+.searchbox select,.searchbox input{border:0;background:transparent;color:var(--text);padding:11px;outline:none}
+.searchbox select{max-width:155px}
+.searchbox input{flex:1;min-width:0;font-size:16px}
+.searchbox button{border:0;border-radius:11px;background:var(--accent);color:#fff;font-weight:700;padding:0 22px;cursor:pointer}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+#resultHeading{font-size:17px;margin:0 0 14px}
+.gsc-control-cse{background:transparent!important;border:0!important;padding:0!important}
+.gsc-webResult.gsc-result,.gsc-results .gsc-imageResult{background:var(--panel)!important;border-color:var(--line)!important}
+.gsc-control-cse,.gsc-table-result,.gsc-thumbnail-inside,.gsc-url-top{color:var(--text)!important}
+.gsc-result .gs-title,.gsc-result .gs-title *{color:var(--accent)!important}
+.gsc-result .gs-snippet{color:var(--text)!important}
+.gsc-results .gsc-cursor-box{border-color:var(--line)!important}
+.note{font-size:12px;color:var(--muted);line-height:1.6;margin-top:14px}
+@media(max-width:650px){.wrap{padding:16px}.searchbox{flex-wrap:wrap}.searchbox select{width:100%;max-width:none;border-bottom:1px solid var(--line)}.searchbox input{width:100%;flex-basis:60%}.searchbox button{min-height:42px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<a class="logo" href="index.html">모아<span style="color:var(--text)">.</span></a>
+<div class="top-right"><button class="btn" id="themeBtn" type="button">화면 설정</button><a class="btn" href="index.html">홈으로</a></div>
+</header>
+<main>
+<section class="hero">
+<h1>모아 검색</h1>
+<div class="muted" id="scopeLabel">검색 결과</div>
+<form class="searchbox" id="searchForm">
+<select id="scope" aria-label="검색 대상">
+<option value="all">Extedic 전체</option>
+<option value="blog">Extedic 블로그</option>
+<option value="sns">Extedic SNS</option>
+<option value="wikis">위키스</option>
+</select>
+<input id="query" type="search" placeholder="검색어를 입력하세요" autocomplete="off" required>
+<button type="submit">검색</button>
+</form>
+</section>
+<section class="panel">
+<h2 id="resultHeading">검색 결과</h2>
+<div class="gcse-search"></div>
+<p class="note">검색 결과는 구글 프로그래머블 검색엔진을 통해 표시됩니다. 결과가 나오지 않으면 검색엔진 설정에서 세 도메인이 검색 대상에 포함되어 있는지 확인해 주세요.</p>
+</section>
+</main>
+</div>
+<script>
+const params=new URLSearchParams(location.search);
+const $=s=>document.querySelector(s);
+const scopes={
+ all:{label:'Extedic 전체',query:'(site:blog.extedic.com OR site:sns.extedic.com)'},
+ blog:{label:'Extedic 블로그',query:'site:blog.extedic.com'},
+ sns:{label:'Extedic SNS',query:'site:sns.extedic.com'},
+ wikis:{label:'위키스',query:'site:wikis.krsocsci.org'}
+};
+function applySearch(){
+ const q=$('#query').value.trim();
+ const key=$('#scope').value;
+ const chosen=scopes[key]||scopes.all;
+ $('#scopeLabel').textContent=chosen.label+' 검색';
+ $('#resultHeading').textContent=chosen.label+' 검색 결과'+(q?' · '+q:'');
+ // The CSE element reads the q parameter from the page URL.
+ const combined=(chosen.query+' '+q).trim();
+ const next=new URL(location.href);
+ next.searchParams.set('q',combined);
+ next.searchParams.set('scope',key);
+ history.replaceState(null,'',next.toString());
+}
+const initialScope=scopes[params.get('scope')]?params.get('scope'):'all';
+const initialQuery=params.get('q')||'';
+$('#scope').value=initialScope;
+$('#query').value=initialQuery.replace(/^\(site:blog\.extedic\.com OR site:sns\.extedic\.com\)\s*|^site:(blog\.extedic\.com|sns\.extedic\.com|wikis\.krsocsci\.org)\s*/,'');
+const cleanQuery=$('#query').value.trim();
+const scopeData=scopes[initialScope];
+$('#scopeLabel').textContent=scopeData.label+' 검색';
+$('#resultHeading').textContent=scopeData.label+' 검색 결과'+(cleanQuery?' · '+cleanQuery:'');
+$('#searchForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const q=$('#query').value.trim();if(!q){$('#query').focus();return;}
+ const key=$('#scope').value;
+ const chosen=scopes[key]||scopes.all;
+ const p=new URLSearchParams({q:(chosen.query+' '+q).trim(),scope:key});
+ location.href='search.html?'+p.toString();
+});
+$('#themeBtn').addEventListener('click',()=>document.body.classList.toggle('dark'));
+</script>
+</body>
+</html>
